@@ -11,9 +11,11 @@
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.562.0",
     "mongoose": "^9.1.2",
     "pg": "^8.16.3",
     "react": "^19.2.3",
+    "react-day-picker": "^9.13.0",
     "react-dom": "^19.2.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
