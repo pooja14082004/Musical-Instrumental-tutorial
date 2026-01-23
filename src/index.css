@@ -127,6 +127,28 @@ body {
   cursor: pointer;
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
+  font-size: 13px;
+  transition: opacity 0.2s;
+}
+
+.card-btn:hover {
+  opacity: 0.9;
+}
+
+.card-btn-secondary {
+  margin-top: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--primary));
+  cursor: pointer;
+  background: transparent;
+  color: hsl(var(--primary));
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.card-btn-secondary:hover {
+  background: hsl(var(--primary) / 0.1);
 }
 
 /* Footer */

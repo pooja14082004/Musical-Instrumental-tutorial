@@ -56,15 +56,19 @@ const LandingPage = () => {
         <h2 className="section-title">Popular Classes</h2>
         <div className="grid">
           {[
-            { title: 'Guitar Basics', img: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400' },
-            { title: 'Piano Masterclass', img: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=400' },
-            { title: 'Vocal Training', img: 'https://images.unsplash.com/photo-1516280440614-37f17c4e0f09?w=400' },
+            { title: 'Guitar Basics', img: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400', price: '₹2,500/month', timing: 'Mon, Wed, Fri - 4:00 PM', instructor: 'Raj Kumar' },
+            { title: 'Piano Masterclass', img: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=400', price: '₹3,000/month', timing: 'Tue, Thu - 5:00 PM', instructor: 'Priya Sharma' },
+            { title: 'Vocal Training', img: 'https://images.unsplash.com/photo-1516280440614-37f17c4e0f09?w=400', price: '₹2,000/month', timing: 'Sat, Sun - 10:00 AM', instructor: 'Anita Desai' },
           ].map((item, i) => (
             <div className="card" key={i}>
               <img src={item.img} alt={item.title} />
               <div className="card-body">
                 <h4>{item.title}</h4>
-                <button className="card-btn">Enroll Now</button>
+                <p className="text-sm text-muted-foreground mb-2">{item.price}</p>
+                <div className="flex gap-2">
+                  <button className="card-btn flex-1">Enroll Now</button>
+                  <button className="card-btn-secondary flex-1">View Details</button>
+                </div>
               </div>
             </div>
           ))}
