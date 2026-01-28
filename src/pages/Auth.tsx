@@ -14,6 +14,8 @@ const Auth: React.FC = () => {
   const [mode, setMode] = useState<AuthMode>('login');
   const [role, setRole] = useState<Role>('student');
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Form fields
   const [email, setEmail] = useState('');
@@ -131,21 +133,36 @@ const Auth: React.FC = () => {
           navigate('/student-homepage');
         }
       } else {
-        const { error } = await signUp(email, password, {
-          full_name: fullName,
-          username,
-          role,
-        });
+        // Call backend signup endpoint for email verification
+        try {
+          const response = await fetch('http://localhost:5000/auth/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: fullName,
+              student_id: username,
+              email,
+              password,
+            }),
+          });
 
-        if (error) {
-          if (error.message.includes('already registered')) {
-            toast.error('This email is already registered');
+          const data = await response.json();
+
+          if (!response.ok) {
+            if (data.error?.includes('already registered')) {
+              toast.error('This email is already registered');
+            } else {
+              toast.error(data.error || 'Signup failed');
+            }
           } else {
-            toast.error(error.message);
+            toast.success('Registration successful! Check your email for verification link.');
+            navigate('/verify-email');
           }
-        } else {
-          toast.success('Registration successful! Please check your email to verify your account.');
-          navigate('/verify-email');
+        } catch (err) {
+          console.error('Signup error:', err);
+          toast.error('Signup failed. Please try again.');
         }
       }
     } catch (error) {
@@ -249,7 +266,7 @@ const Auth: React.FC = () => {
           {errors.email && <p className="validation-error">{errors.email}</p>}
 
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             className={`auth-input ${errors.password ? 'error' : ''}`}
             placeholder="Password"
             value={password}
@@ -278,7 +295,7 @@ const Auth: React.FC = () => {
           {mode === 'signup' && (
             <>
               <input
-                type="password"
+                type={showConfirmPassword ? 'text' : 'password'}
                 className={`auth-input ${errors.confirmPassword ? 'error' : ''}`}
                 placeholder="Confirm Password"
                 value={confirmPassword}

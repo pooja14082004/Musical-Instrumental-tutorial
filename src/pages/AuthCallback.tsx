@@ -17,7 +17,7 @@ const AuthCallback: React.FC = () => {
 
       if (session) {
         // User is verified and logged in
-        navigate('/student-homepage');
+        navigate('./student-homepage');
       } else {
         // No session, redirect to auth
         navigate('/auth');
