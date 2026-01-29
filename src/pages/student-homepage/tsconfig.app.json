@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": false,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "../homepage/src/pages/pages", "../../firebaseConfig.ts", "../homepage/src/pages/Help.tsx", "../homepage/src/pages/LiveSessions.tsx", "../homepage/src/pages/StudentProfile.tsx", "../homepage/src/pages/UploadMedia.tsx", "../homepage/src/pages/StudentUpload.tsx", "backend/firebaseConfig.ts", "backend/firebaseConfig.ts"]
+}
